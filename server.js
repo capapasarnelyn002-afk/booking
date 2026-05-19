@@ -1,35 +1,41 @@
+// server.js
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 
-// fix __dirname for ES module
+// For ES module, get __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve all static files in /public
+// Middleware to serve static files (CSS, JS, images)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes for HTML pages
+// Routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/customer.html', (req, res) => {
+app.get('/customer', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'customer.html'));
 });
 
-app.get('/admin.html', (req, res) => {
+app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
-app.get('/staff.html', (req, res) => {
+app.get('/staff', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'staff.html'));
 });
 
-// start server
+// Catch-all for unknown routes
+app.use((req, res) => {
+  res.status(404).send('Page Not Found');
+});
+
+// Start server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
