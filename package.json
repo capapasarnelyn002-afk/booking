@@ -5,10 +5,10 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "vite",                  // for local frontend dev
-    "build": "vite build",           // build frontend for production
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview",
-    "start": "node server.js"        // start Express backend for Render
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -35,6 +35,6 @@
     "vite-plugin-singlefile": "2.3.0"
   },
   "engines": {
-    "node": ">=18"                  // specify Node version for Render
+    "node": ">=18"
   }
 }
